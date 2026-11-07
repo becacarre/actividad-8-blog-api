@@ -1,0 +1,5 @@
+# Dependencias del proyecto
+node_modules/
+
+# Datos de conexion a la base de datos
+.env

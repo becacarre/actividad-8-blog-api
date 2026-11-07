@@ -1,0 +1,16 @@
+{
+  "name": "actividad-8-rebeca-carreno",
+  "version": "1.0.0",
+  "description": "Actividad 8 - API de blog con Express y MySQL",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6"
+  }
+}
