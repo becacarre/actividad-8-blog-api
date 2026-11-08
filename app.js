@@ -1,6 +1,7 @@
 
 const express = require('express');
 const db = require('./config/db');
+const rutasAutores = require('./routes/autores');
 
 const app = express();
 const PORT = 3000;
@@ -8,10 +9,13 @@ const PORT = 3000;
 // Permite recibir datos en formato JSON
 app.use(express.json());
 
-// Ruta para comprobar que la API funciona bien
+// Ruta para comprobar que la API funciona
 app.get('/api', (req, res) => {
     res.json({ mensaje: 'API del blog funcionando correctamente' });
 });
+
+// Rutas de autores
+app.use('/api/autores', rutasAutores);
 
 // Comprobar la conexion con MySQL
 async function comprobarConexion() {
