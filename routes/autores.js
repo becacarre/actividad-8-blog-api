@@ -31,10 +31,19 @@ router.post('/', async (req, res) => {
         return res.status(400).json({ mensaje: 'El email no es valido' });
     }
 
+    // Si hay una imagen, comprobamos que sea una URL valida
+    if (imagen != null && imagen !== '') {
+        if (typeof imagen !== 'string' ||
+            !/^https?:\/\/\S+\.\S+$/i.test(imagen.trim())) {
+            return res.status(400).json({ mensaje: 'La URL de la imagen no es valida' });
+        }
+    }
+
     try {
         const [resultado] = await db.query(
             'INSERT INTO autores (nombre, email, imagen) VALUES (?, ?, ?)',
-            [nombre.trim(), email.trim(), imagen || null]
+            [nombre.trim(), email.trim(),
+             typeof imagen === 'string' ? imagen.trim() || null : null]
         );
 
         res.status(201).json({
