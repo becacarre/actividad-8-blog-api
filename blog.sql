@@ -31,8 +31,18 @@ CREATE TABLE `autores` (
   `imagen` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `autores`
+--
+
+LOCK TABLES `autores` WRITE;
+/*!40000 ALTER TABLE `autores` DISABLE KEYS */;
+INSERT INTO `autores` VALUES (1,'Ana García','ana@ejemplo.com','https://ejemplo.com/ana.jpg'),(3,'Carlos Martínez','carlos@ejemplo.com','https://ejemplo.com/carlos.jpg'),(4,'Patricia Carreño','patricia.carre@ejemplo.com','https://ejemplo.com/foto-patricia.jpg'),(5,'Belén Gutiérrez','cierzo.belen@ejemplo.com',NULL);
+/*!40000 ALTER TABLE `autores` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `posts`
@@ -51,8 +61,18 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`id`),
   KEY `autor_id` (`autor_id`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`autor_id`) REFERENCES `autores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `posts`
+--
+
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (1,'Mi primer post sobre libros','Esta es la primera publicacion de mi blog.','2026-11-08 19:50:37','Libros',1),(2,'Mis libros favoritos','Una seleccion de algunos libros que he leido y que recomiendo.','2026-11-09 20:19:24','Libros',1),(3,'Mejores comidas para perritos','En este post hacemos un ranking de los mejores piensos que ha probado mi perro.','2026-11-09 20:19:24','Mascotas',3),(4,'Un fin de semana en Bilbao','Algunas ideas de lugares para visitar y disfrutar de un fin de semana en Bilbao.','2026-11-09 20:19:24','Viajes',4),(5,'Aprendiendo a hacer sopa de lasaña','Una receta fácil de sopa de lasaña para el invierno.','2026-11-09 20:19:24','Cocina',3);
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -63,4 +83,4 @@ CREATE TABLE `posts` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-09 20:06:45
+-- Dump completed on 2026-11-09 20:20:36
