@@ -16,4 +16,4 @@ He añadido validaciones para comprobar los campos obligatorios, el formato del 
 
 Las peticiones se han probado utilizando Thunder Client.
 
-El archivo `blog.sql` contiene la estructura de las tablas exportada desde MySQL Workbench.
+El archivo blog.sql contiene la estructura de las tablas y algunos datos de ejemplo exportados desde MySQL Workbench
