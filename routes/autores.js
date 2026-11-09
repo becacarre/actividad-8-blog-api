@@ -53,4 +53,43 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Recuperamos los posts de un autor concreto
+router.get('/:id/posts', async (req, res) => {
+    const id = Number(req.params.id);
+
+    // Comprobamos que el ID del autor sea valido
+    if (!Number.isInteger(id) || id <= 0) {
+        return res.status(400).json({ mensaje: 'El ID del autor no es valido' });
+    }
+
+    try {
+        // Comprobamos que el autor exista
+        const [autores] = await db.query(
+            'SELECT * FROM autores WHERE id = ?',
+            [id]
+        );
+
+        if (autores.length === 0) {
+            return res.status(404).json({ mensaje: 'El autor no existe' });
+        }
+
+        // Recuperamos todas las publicaciones de ese autor
+        const [posts] = await db.query(`
+            SELECT posts.id, posts.titulo, posts.descripcion,
+                   posts.fecha_creacion, posts.categoria,
+                   autores.id AS autor_id, autores.nombre AS autor_nombre,
+                   autores.email AS autor_email, autores.imagen AS autor_imagen
+            FROM posts
+            JOIN autores ON posts.autor_id = autores.id
+            WHERE autores.id = ?
+        `, [id]);
+
+        res.json(posts);
+
+    } catch (error) {
+        console.log('Error al obtener los posts del autor:', error.message);
+        res.status(500).json({ mensaje: 'Error al obtener los posts del autor' });
+    }
+});
+
 module.exports = router;
