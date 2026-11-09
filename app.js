@@ -2,6 +2,7 @@
 const express = require('express');
 const db = require('./config/db');
 const rutasAutores = require('./routes/autores');
+const rutasPosts = require('./routes/posts');
 
 const app = express();
 const PORT = 3000;
@@ -17,7 +18,10 @@ app.get('/api', (req, res) => {
 // Rutas de autores
 app.use('/api/autores', rutasAutores);
 
-// Comprobar la conexion con MySQL
+// Rutas de posts
+app.use('/api/posts', rutasPosts);
+
+// Comprobamos la conexion con MySQL
 async function comprobarConexion() {
     try {
         const conexion = await db.getConnection();
@@ -28,7 +32,7 @@ async function comprobarConexion() {
     }
 }
 
-// Iniciar el servidor
+// Iniciamos el servidor
 app.listen(PORT, () => {
     console.log(`Servidor funcionando en http://localhost:${PORT}`);
     comprobarConexion();
